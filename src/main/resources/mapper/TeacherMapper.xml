@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.TeacherMapper">
+    <update id="update">
+        update teacher
+        set id = #{id}, username = #{username}, gender=#{gender}, age =#{age},jobrank=#{jobrank},
+            birthplace=#{birthplace},password=#{password},
+            degree=#{degree},telnum=#{telnum},unit=#{unit}
+        where id = #{id}
+    </update>
+    <select id="selectAll" resultType="Entity.Teacher">
+        select * from teacher
+    </select>
+    <select id="find" resultType="Entity.Teacher">
+        select * from teacher where cardid = #{cardid} and password = #{password}
+    </select>
+    <select id="findByCardid" resultType="Entity.Teacher">
+        select * from teacher where cardid = #{cardid}
+    </select>
+
+    <update id="insert">
+        insert teacher
+        set id = #{id},cardid=#{cardid}, username = #{username}, gender=#{gender}, age =#{age},jobrank=#{jobrank},
+            birthplace=#{birthplace},password=#{password},
+            degree=#{degree},telnum=#{telnum},unit=#{unit}
+
+    </update>
+
+</mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.SalaryItemMapper">
+    <update id="insert">
+        insert salary
+        set id = #{id}, cardid = #{cardid}, salary=#{salary}, bonus =#{bonus},punish=#{punish},
+            tax=#{tax},res=#{res},
+            date=#{date}
+
+    </update>
+
+
+    <select id="selectAll" resultType="Entity.SalaryItem"> select * from salary</select>
+    <select id="find" resultType="Entity.SalaryItem">select * from salary where cardid = #{cardid}</select>
+</mapper>

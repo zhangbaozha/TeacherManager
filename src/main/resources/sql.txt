@@ -1,0 +1,43 @@
+create table admin
+(
+    id       int auto_increment
+        primary key,
+    username varchar(64) null,
+    password varchar(64) null
+)
+    charset = utf8;
+
+
+
+
+create table salary
+(
+    id     int auto_increment
+        primary key,
+    cardid varchar(64) null,
+    salary double      null,
+    bonus  double      null,
+    punish double      null,
+    tax    double      null,
+    res    double      null,
+    date   varchar(64) null
+)
+    charset = utf8;
+
+
+create table teacher
+(
+    id         int auto_increment
+        primary key,
+    username   varchar(64) null,
+    password   varchar(64) null,
+    cardid     varchar(64) null,
+    gender     varchar(64) null,
+    age        varchar(64) null,
+    jobrank    varchar(64) null,
+    birthplace varchar(64) null,
+    degree     varchar(64) null,
+    telnum     varchar(64) null,
+    unit       varchar(64) null
+)
+    charset = utf8;
