@@ -1,8 +1,8 @@
 package View;
 
 import Entity.SalaryItem;
-import Entity.User;
-import mapper.SalaryItemMapper;
+import Entity.Teacher;
+import mapper.TeacherMapper;
 import org.apache.ibatis.session.SqlSession;
 import utils.MybatisUtils;
 
@@ -15,17 +15,19 @@ import java.util.List;
  * @author zhw
  * Date:2022/12/2
  */
-public class TeacherCheckSalary {
-
-    public TeacherCheckSalary(){
-        User u = User.getInstance();
+public class AdminCheckTeacherByName {
+    public static String name;
+    static {
+        name = JOptionPane.showInputDialog(null, "请输入待查询的姓名：", "");
+        name = "%" + name + "%";
+    }
+    public AdminCheckTeacherByName(){
         SqlSession sqlSession = MybatisUtils.getSession();
-        SalaryItemMapper salaryItemMapperMapper = sqlSession.getMapper(SalaryItemMapper.class);
-        List<SalaryItem> salaryItems = salaryItemMapperMapper.find(u.getCardid());
-
+        TeacherMapper mapper = sqlSession.getMapper(TeacherMapper.class);
+        List<Teacher> teachers = mapper.selectByName(name);
         JFrame frame = new JFrame();
         //设置窗体对象的属性值
-        frame.setTitle("工资详情");//设置窗体标题
+        frame.setTitle("教师信息详情");//设置窗体标题
         frame.setSize(600, 800);//设置窗体大小，只对顶层容器生效
         frame.setLocationRelativeTo(null);//设置窗体相对于另一组间的居中位置，参数null表示窗体相对于屏幕的中央位置
         frame.setResizable(true);//禁止调整窗体大小
@@ -41,24 +43,21 @@ public class TeacherCheckSalary {
         JTable table = null;
         JFrame checkAllFrame = new JFrame("\"TableDemo\"");
         String[][] datas = {};
-        String[] titles = { "基本工资", "奖金" ,"罚款","扣税","实发工资","年","月"};
+        String[] titles = { "工号", "姓名" ,"性别","年龄","职称","籍贯","学历","电话","所在单位"};
         DefaultTableModel model = null;
         model = new DefaultTableModel(datas, titles);
         table = new JTable(model);
         double sum = 0;
-        for (SalaryItem item : salaryItems) {
-            model.addRow(new String[] {item.getSalary()+"",item.getBonus()+"",item.getPunish()+"",item.getTax()+"",item.getRes()+"",item.getYear(), item.getMonth()});
-            sum+=item.getRes();
+        for (Teacher item : teachers) {
+            model.addRow(new String[] {item.getCardid()+"",item.getUsername()+"",item.getGender()+"",item.getAge()+"",item.getJobrank()+"",item.getBirthplace(),item.getDegree(),item.getTelnum(),item.getUnit()});
+
         }
 
-        JLabel labname = new JLabel("总计：" + sum);
-        labname.setFont(new Font("宋体", Font.PLAIN, 14));
-        //将labname标签添加到窗体上
-        frame.add(labname);
 
         frame.add(new JScrollPane(table));
-        System.out.println(salaryItems);
-        frame.setVisible(true);
 
+        frame.setVisible(true);
     }
+
+
 }

@@ -22,7 +22,7 @@ public class AdminChangeTeacherUnit {
     public static String cardid;
     private JTextField oldjob;
     private JTextField newjob;
-    {
+    static {
          cardid = JOptionPane.showInputDialog(null, "请输入待调动的工号：", "");
 
     }

@@ -24,7 +24,9 @@ public class AdminPaySalary {
     private JTextField text_bonus;
     private JTextField text_punish;
     private JTextField text_tax;
-    private JTextField text_date;
+    private JTextField text_year;
+    private JTextField text_month;
+
 
 
 
@@ -36,7 +38,7 @@ public class AdminPaySalary {
 
         JFrame frame = new JFrame();
         //设置窗体对象的属性值
-        frame.setTitle("管理员修改教师资料");//设置窗体标题
+        frame.setTitle("管理员发放工资");//设置窗体标题
         frame.setSize(420, 800);//设置窗体大小，只对顶层容器生效
         frame.setLocationRelativeTo(null);//设置窗体相对于另一组间的居中位置，参数null表示窗体相对于屏幕的中央位置
         frame.setResizable(true);//禁止调整窗体大小
@@ -54,12 +56,6 @@ public class AdminPaySalary {
         frame.add(labname);
         //实例化JTextField标签对象化
         text_cardid = new JTextField();
-
-
-
-
-
-
         Dimension dim1 = new Dimension(300, 30);
         text_cardid.setPreferredSize(dim1);//设置除顶级容器组件以外其他组件的大小
         //将textName标签添加到窗体上
@@ -73,7 +69,6 @@ public class AdminPaySalary {
         frame.add(labpass);
         //实例化JPasswordField
         text_salary = new JTextField();
-
         //设置大小
         text_salary.setPreferredSize(dim1);
         //添加到窗体
@@ -87,7 +82,6 @@ public class AdminPaySalary {
         frame.add(l1);
         //实例化JPasswordField
         text_bonus = new JTextField();
-
         //设置大小
         text_bonus.setPreferredSize(dim1);
         //添加到窗体
@@ -101,11 +95,11 @@ public class AdminPaySalary {
         frame.add(l2);
         //实例化JPasswordField
         text_punish = new JTextField();
-
         //设置大小
         text_punish.setPreferredSize(dim1);
         //添加到窗体
         frame.add(text_punish);
+
 
         //实例化JLabel标签对象，该对象显示“密码”
         JLabel l3 = new JLabel("扣税：");
@@ -114,24 +108,37 @@ public class AdminPaySalary {
         frame.add(l3);
         //实例化JPasswordField
         text_tax = new JTextField();
-
         //设置大小
         text_tax.setPreferredSize(dim1);
         //添加到窗体
         frame.add(text_tax);
 
         //实例化JLabel标签对象，该对象显示“密码”
-        JLabel l4 = new JLabel("发放日期：");
+        JLabel l4 = new JLabel("发放年：");
         l4.setFont(new Font("宋体", Font.PLAIN, 14));
         //将labpass添加到窗体上
         frame.add(l4);
         //实例化JPasswordField
-        text_date = new JTextField();
+        text_year = new JTextField();
+        //设置大小
+        text_year.setPreferredSize(dim1);
+        //添加到窗体
+        frame.add(text_year);
+
+
+
+        //实例化JLabel标签对象，该对象显示“密码”
+        JLabel l5 = new JLabel("发放月：");
+        l4.setFont(new Font("宋体", Font.PLAIN, 14));
+        //将labpass添加到窗体上
+        frame.add(l5);
+        //实例化JPasswordField
+        text_month = new JTextField();
 
         //设置大小
-        text_date.setPreferredSize(dim1);
+        text_month.setPreferredSize(dim1);
         //添加到窗体
-        frame.add(text_date);
+        frame.add(text_month);
 
 
 
@@ -149,7 +156,8 @@ public class AdminPaySalary {
                 salaryItem.setBonus(Double.parseDouble(text_bonus.getText()));
                 salaryItem.setPunish(Double.parseDouble(text_punish.getText()));
                 salaryItem.setTax(Double.parseDouble(text_tax.getText()));
-                salaryItem.setDate(text_date.getText());
+                salaryItem.setYear(text_year.getText());
+                salaryItem.setMonth(text_month.getText());
 
                 salaryItem.setRes(Double.parseDouble(text_salary.getText())+Double.parseDouble(text_bonus.getText())-Double.parseDouble(text_punish.getText())-Double.parseDouble(text_tax.getText()));
 
@@ -158,7 +166,7 @@ public class AdminPaySalary {
                 mapper.insert(salaryItem);
                 sqlSession.commit();
 
-                JOptionPane.showMessageDialog(null, "修改成功");
+                JOptionPane.showMessageDialog(null, "添加成功");
 
 
 

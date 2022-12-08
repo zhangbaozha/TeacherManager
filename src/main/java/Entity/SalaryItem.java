@@ -15,6 +15,7 @@ public class SalaryItem {
     private double punish;
     private double tax;
     private double res;
-    private String date;
+    private String year;
+    private String month;
 
 }

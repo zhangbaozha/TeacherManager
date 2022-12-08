@@ -19,6 +19,9 @@
     <select id="findByCardid" resultType="Entity.Teacher">
         select * from teacher where cardid = #{cardid}
     </select>
+    <select id="selectByName" resultType="Entity.Teacher">
+        select * from teacher where username like #{username}
+    </select>
 
     <update id="insert">
         insert teacher

@@ -13,5 +13,6 @@ import java.util.List;
 public interface SalaryItemMapper {
     List<SalaryItem> selectAll();
     List<SalaryItem> find(@Param("cardid") String cardid);
+    List<SalaryItem> findByDate(@Param("cardid") String cardid,@Param("year") String year,@Param("month") String month);
     void insert(SalaryItem s);
 }

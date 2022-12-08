@@ -1,10 +1,7 @@
 package View;
 
 import Entity.SalaryItem;
-import Entity.Teacher;
-import Entity.User;
 import mapper.SalaryItemMapper;
-import mapper.TeacherMapper;
 import org.apache.ibatis.session.SqlSession;
 import utils.MybatisUtils;
 
@@ -17,13 +14,22 @@ import java.util.List;
  * @author zhw
  * Date:2022/12/2
  */
-public class AdminCheckSalary {
+public class AdminCheckSalaryByDate {
+    public  static String cardid;
+    public  static String year;
+    public  static String month;
+    static {
+        cardid = JOptionPane.showInputDialog(null, "请输入待查询的工号：", "");
+        year = JOptionPane.showInputDialog(null, "请输入待查询的年份：", "");
+        month = JOptionPane.showInputDialog(null, "请输入待查询的月份：", "");
 
-    public AdminCheckSalary(){
+    }
+
+    public AdminCheckSalaryByDate(){
 
         SqlSession sqlSession = MybatisUtils.getSession();
         SalaryItemMapper salaryItemMapperMapper = sqlSession.getMapper(SalaryItemMapper.class);
-        List<SalaryItem> salaryItems = salaryItemMapperMapper.selectAll();
+        List<SalaryItem> salaryItems = salaryItemMapperMapper.findByDate(cardid,year,month);
 
         JFrame frame = new JFrame();
         //设置窗体对象的属性值
@@ -43,13 +49,13 @@ public class AdminCheckSalary {
         JTable table = null;
         JFrame checkAllFrame = new JFrame("\"TableDemo\"");
         String[][] datas = {};
-        String[] titles = {"工号", "基本工资", "奖金" ,"罚款","扣税","实发工资","日期"};
+        String[] titles = {"工号", "基本工资", "奖金" ,"罚款","扣税","实发工资","年","月"};
         DefaultTableModel model = null;
         model = new DefaultTableModel(datas, titles);
         table = new JTable(model);
         double sum = 0;
         for (SalaryItem item : salaryItems) {
-            model.addRow(new String[] {item.getCardid(),item.getSalary()+"",item.getBonus()+"",item.getPunish()+"",item.getTax()+"",item.getRes()+"",item.getDate()});
+            model.addRow(new String[] {item.getCardid(),item.getSalary()+"",item.getBonus()+"",item.getPunish()+"",item.getTax()+"",item.getRes()+"",item.getYear(),item.getMonth()});
             sum+=item.getRes();
         }
 

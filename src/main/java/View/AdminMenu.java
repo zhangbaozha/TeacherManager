@@ -1,29 +1,21 @@
 package View;
 
 
-import Entity.User;
-import utils.NetUtils;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.io.IOException;
-import java.net.Socket;
-import java.net.UnknownHostException;
 
 public class AdminMenu extends JFrame {
 
 
     public AdminMenu() {
-        setLayout(new GridLayout(6, 1, 5, 5));
+        setLayout(new GridLayout(8, 1, 5, 5));
         Container c = getContentPane();                                // 创建容器
         JButton b1 = new JButton();
         b1.setText("修改教师资料");
         JButton b2 = new JButton();
-        b2.setText("查询工资发放记录");
+        b2.setText("按时间查询工资发放记录");
         JButton b3 = new JButton();
         b3.setText("发放工资");
         JButton b4 = new JButton();
@@ -32,6 +24,10 @@ public class AdminMenu extends JFrame {
         b5.setText("查询所有教师信息");
         JButton b6 = new JButton();
         b6.setText("录入新教师信息");
+        JButton b7 = new JButton();
+        b7.setText("按名字查找教师信息");
+        JButton b8 = new JButton();
+        b8.setText("查询工资发放记录");
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -45,7 +41,7 @@ public class AdminMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                new AdminCheckSalary();
+                new AdminCheckSalaryByDate();
             }
         });
         b3.addActionListener(new ActionListener() {
@@ -76,6 +72,20 @@ public class AdminMenu extends JFrame {
                 new AdminAddTeacher();
             }
         });
+        b7.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                new AdminCheckTeacherByName();
+            }
+        });
+        b8.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                new AdminCheckAllSalary();
+            }
+        });
 
         c.add(b1);
         c.add(b2);
@@ -83,6 +93,8 @@ public class AdminMenu extends JFrame {
         c.add(b4);
         c.add(b5);
         c.add(b6);
+        c.add(b7);
+        c.add(b8);
         setVisible(true);
         setTitle("管理员菜单");
         setBounds(100, 100, 400, 200);

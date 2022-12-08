@@ -12,4 +12,5 @@ public interface TeacherMapper {
     Teacher findByCardid(@Param("cardid") String cardid);
     void update(Teacher t);
     void insert(Teacher t);
+    List<Teacher> selectByName(@Param("username") String username);
 }

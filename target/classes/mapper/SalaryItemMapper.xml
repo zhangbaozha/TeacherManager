@@ -7,11 +7,12 @@
         insert salary
         set id = #{id}, cardid = #{cardid}, salary=#{salary}, bonus =#{bonus},punish=#{punish},
             tax=#{tax},res=#{res},
-            date=#{date}
+            year=#{year},month=#{month}
 
     </update>
 
 
     <select id="selectAll" resultType="Entity.SalaryItem"> select * from salary</select>
     <select id="find" resultType="Entity.SalaryItem">select * from salary where cardid = #{cardid}</select>
+    <select id="findByDate" resultType="Entity.SalaryItem">select * from salary where cardid = #{cardid} and year = #{year} and month=#{month}</select>
 </mapper>

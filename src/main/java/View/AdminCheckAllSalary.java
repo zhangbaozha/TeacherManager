@@ -1,8 +1,10 @@
 package View;
 
 import Entity.SalaryItem;
+import Entity.Teacher;
 import Entity.User;
 import mapper.SalaryItemMapper;
+import mapper.TeacherMapper;
 import org.apache.ibatis.session.SqlSession;
 import utils.MybatisUtils;
 
@@ -15,17 +17,17 @@ import java.util.List;
  * @author zhw
  * Date:2022/12/2
  */
-public class TeacherCheckSalary {
+public class AdminCheckAllSalary {
 
-    public TeacherCheckSalary(){
-        User u = User.getInstance();
+    public AdminCheckAllSalary(){
+
         SqlSession sqlSession = MybatisUtils.getSession();
         SalaryItemMapper salaryItemMapperMapper = sqlSession.getMapper(SalaryItemMapper.class);
-        List<SalaryItem> salaryItems = salaryItemMapperMapper.find(u.getCardid());
+        List<SalaryItem> salaryItems = salaryItemMapperMapper.selectAll();
 
         JFrame frame = new JFrame();
         //设置窗体对象的属性值
-        frame.setTitle("工资详情");//设置窗体标题
+        frame.setTitle("工资发放记录");//设置窗体标题
         frame.setSize(600, 800);//设置窗体大小，只对顶层容器生效
         frame.setLocationRelativeTo(null);//设置窗体相对于另一组间的居中位置，参数null表示窗体相对于屏幕的中央位置
         frame.setResizable(true);//禁止调整窗体大小
@@ -41,13 +43,13 @@ public class TeacherCheckSalary {
         JTable table = null;
         JFrame checkAllFrame = new JFrame("\"TableDemo\"");
         String[][] datas = {};
-        String[] titles = { "基本工资", "奖金" ,"罚款","扣税","实发工资","年","月"};
+        String[] titles = {"工号", "基本工资", "奖金" ,"罚款","扣税","实发工资","年","月"};
         DefaultTableModel model = null;
         model = new DefaultTableModel(datas, titles);
         table = new JTable(model);
         double sum = 0;
         for (SalaryItem item : salaryItems) {
-            model.addRow(new String[] {item.getSalary()+"",item.getBonus()+"",item.getPunish()+"",item.getTax()+"",item.getRes()+"",item.getYear(), item.getMonth()});
+            model.addRow(new String[] {item.getCardid(),item.getSalary()+"",item.getBonus()+"",item.getPunish()+"",item.getTax()+"",item.getRes()+"",item.getYear(),item.getMonth()});
             sum+=item.getRes();
         }
 
