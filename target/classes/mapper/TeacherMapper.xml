@@ -5,11 +5,16 @@
 <mapper namespace="mapper.TeacherMapper">
     <update id="update">
         update teacher
-        set id = #{id}, username = #{username}, gender=#{gender}, age =#{age},jobrank=#{jobrank},
+        set username = #{username}, gender=#{gender}, age =#{age},jobrank=#{jobrank},
             birthplace=#{birthplace},password=#{password},
             degree=#{degree},telnum=#{telnum},unit=#{unit}
-        where id = #{id}
+        where cardid = #{cardid}
     </update>
+    <delete id="deleteTeacher">
+        delete from salary where  cardid=#{cardid};
+        delete from teacher where  cardid=#{cardid}
+
+    </delete>
     <select id="selectAll" resultType="Entity.Teacher">
         select * from teacher
     </select>
@@ -25,7 +30,7 @@
 
     <update id="insert">
         insert teacher
-        set id = #{id},cardid=#{cardid}, username = #{username}, gender=#{gender}, age =#{age},jobrank=#{jobrank},
+        set cardid=#{cardid}, username = #{username}, gender=#{gender}, age =#{age},jobrank=#{jobrank},
             birthplace=#{birthplace},password=#{password},
             degree=#{degree},telnum=#{telnum},unit=#{unit}
 

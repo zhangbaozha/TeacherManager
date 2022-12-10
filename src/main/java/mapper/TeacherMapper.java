@@ -13,4 +13,6 @@ public interface TeacherMapper {
     void update(Teacher t);
     void insert(Teacher t);
     List<Teacher> selectByName(@Param("username") String username);
+
+    void deleteTeacher(@Param("cardid")String cardid);
 }

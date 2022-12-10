@@ -162,6 +162,7 @@ public TeacherChangeInfo(){
         @Override
         public void actionPerformed(ActionEvent e) {
             Teacher teacher = new Teacher();
+            teacher.setCardid(t.getCardid());
             teacher.setUsername(text_username.getText());
             teacher.setGender(text_gender.getText());
             teacher.setAge(text_age.getText());
@@ -169,7 +170,7 @@ public TeacherChangeInfo(){
             teacher.setBirthplace(text_birthplace.getText());
             teacher.setDegree(text_degree.getText());
             teacher.setTelnum(text_telnum.getText());
-            teacher.setId(t.getId());
+
             teacher.setPassword(t.getPassword());
             teacher.setUnit(t.getUnit());
             userMapper.update(teacher);

@@ -169,7 +169,7 @@ public class AdminChangeTeacherInfo {
                 Teacher teacher = new Teacher();
 
                 Teacher old = userMapper.findByCardid(text_cardid.getText());
-                teacher.setId(old.getId());
+                teacher.setCardid(text_cardid.getText());
                 teacher.setPassword(old.getPassword());
 
                 teacher.setUsername(text_username.getText());
@@ -180,7 +180,7 @@ public class AdminChangeTeacherInfo {
                 teacher.setDegree(text_degree.getText());
                 teacher.setTelnum(text_telnum.getText());
 
-                System.out.println(teacher.getId());
+
                 userMapper.update(teacher);
                 sqlSession.commit();
 

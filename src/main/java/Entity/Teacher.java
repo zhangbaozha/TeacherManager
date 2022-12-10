@@ -8,7 +8,7 @@ import lombok.Data;
  */
 @Data
 public class Teacher {
-    private int id;  //id
+
     private String username;   //姓名
     private String password;   //密码
     private String cardid;

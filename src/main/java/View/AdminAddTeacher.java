@@ -186,7 +186,6 @@ public class AdminAddTeacher {
                 teacher.setDegree(text_degree.getText());
                 teacher.setTelnum(text_telnum.getText());
 
-                System.out.println(teacher.getId());
                 userMapper.insert(teacher);
                 sqlSession.commit();
 

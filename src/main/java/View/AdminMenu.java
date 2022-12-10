@@ -10,7 +10,7 @@ public class AdminMenu extends JFrame {
 
 
     public AdminMenu() {
-        setLayout(new GridLayout(8, 1, 5, 5));
+        setLayout(new GridLayout(9, 1, 5, 5));
         Container c = getContentPane();                                // 创建容器
         JButton b1 = new JButton();
         b1.setText("修改教师资料");
@@ -28,6 +28,8 @@ public class AdminMenu extends JFrame {
         b7.setText("按名字查找教师信息");
         JButton b8 = new JButton();
         b8.setText("查询工资发放记录");
+        JButton b9 = new JButton();
+        b9.setText("开除教师");
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -86,6 +88,13 @@ public class AdminMenu extends JFrame {
                 new AdminCheckAllSalary();
             }
         });
+        b9.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                new AdminDeleteTeacher();
+            }
+        });
 
         c.add(b1);
         c.add(b2);
@@ -95,9 +104,10 @@ public class AdminMenu extends JFrame {
         c.add(b6);
         c.add(b7);
         c.add(b8);
+        c.add(b9);
         setVisible(true);
         setTitle("管理员菜单");
-        setBounds(100, 100, 400, 200);
+        setBounds(100, 100, 400, 800);
     }
 
 }
